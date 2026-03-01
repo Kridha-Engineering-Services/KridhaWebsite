@@ -1,10 +1,24 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function QuoteModal({ isOpen, onClose }) {
+  const [formData, setFormData] = useState({
+    name: '',
+    company: '',
+    email: '',
+    phone: '',
+    service: '',
+    message: ''
+  });
+  
+  const [status, setStatus] = useState({ loading: false, success: false, error: '' });
+
   // Lock body scroll when modal is open
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
+      // Reset state if opened again
+      setStatus({ loading: false, success: false, error: '' });
+      setFormData({ name: '', company: '', email: '', phone: '', service: '', message: '' });
     } else {
       document.body.style.overflow = '';
     }
@@ -17,6 +31,39 @@ export default function QuoteModal({ isOpen, onClose }) {
     if (isOpen) window.addEventListener('keydown', handleKey);
     return () => window.removeEventListener('keydown', handleKey);
   }, [isOpen, onClose]);
+
+  const handleChange = (e) => {
+    setFormData((prev) => ({ ...prev, [e.target.id.replace('modal-', '')]: e.target.value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus({ loading: true, success: false, error: '' });
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        setStatus({ loading: false, success: true, error: '' });
+        setFormData({ name: '', company: '', email: '', phone: '', service: '', message: '' });
+        
+        // Auto-close after short delay
+        setTimeout(() => {
+          onClose();
+        }, 2000);
+      } else {
+        setStatus({ loading: false, success: false, error: data.message || 'Validation failed. Please try again.' });
+      }
+    } catch (error) {
+      setStatus({ loading: false, success: false, error: 'Internal server error. Please try again later.' });
+    }
+  };
 
   if (!isOpen) return null;
 
@@ -66,112 +113,151 @@ export default function QuoteModal({ isOpen, onClose }) {
 
         {/* Form body */}
         <div className="px-6 py-6">
-          <p className="text-slate-500 text-sm mb-6 leading-relaxed">
-            Fill in the details below and our engineering team will contact you with a
-            tailored proposal within 24 hours.
-          </p>
-
-          <form
-            onSubmit={(e) => { e.preventDefault(); alert('Thank you! We will contact you shortly.'); onClose(); }}
-            className="space-y-4"
-          >
-            {/* Name + Company */}
-            <div className="grid sm:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5" htmlFor="modal-name">
-                  Full Name *
-                </label>
-                <input
-                  id="modal-name"
-                  type="text"
-                  required
-                  placeholder="Your name"
-                  className="w-full border border-slate-200 rounded-sm px-3 py-2.5 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
-                />
+          {status.success ? (
+            <div className="text-center py-8">
+              <div className="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
               </div>
-              <div>
-                <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5" htmlFor="modal-company">
-                  Company / Organization
-                </label>
-                <input
-                  id="modal-company"
-                  type="text"
-                  placeholder="Company name"
-                  className="w-full border border-slate-200 rounded-sm px-3 py-2.5 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
-                />
-              </div>
+              <h3 className="text-xl font-bold text-slate-900 mb-2">Quote Request Sent!</h3>
+              <p className="text-slate-500">Thank you. Our engineering team will contact you shortly.</p>
             </div>
+          ) : (
+            <>
+              <p className="text-slate-500 text-sm mb-4 leading-relaxed">
+                Fill in the details below and our engineering team will contact you with a
+                tailored proposal within 24 hours.
+              </p>
 
-            {/* Email + Phone */}
-            <div className="grid sm:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5" htmlFor="modal-email">
-                  Email Address *
-                </label>
-                <input
-                  id="modal-email"
-                  type="email"
-                  required
-                  placeholder="you@company.com"
-                  className="w-full border border-slate-200 rounded-sm px-3 py-2.5 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
-                />
-              </div>
-              <div>
-                <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5" htmlFor="modal-phone">
-                  Phone Number *
-                </label>
-                <input
-                  id="modal-phone"
-                  type="tel"
-                  required
-                  placeholder="+91 XXXXX XXXXX"
-                  className="w-full border border-slate-200 rounded-sm px-3 py-2.5 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
-                />
-              </div>
-            </div>
+              {status.error && (
+                <div className="mb-4 p-3 bg-red-50 border border-red-200 text-red-600 text-sm rounded-sm">
+                  {status.error}
+                </div>
+              )}
 
-            {/* Service */}
-            <div>
-              <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5" htmlFor="modal-service">
-                Service Required *
-              </label>
-              <select
-                id="modal-service"
-                required
-                className="w-full border border-slate-200 rounded-sm px-3 py-2.5 text-sm text-slate-800 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors bg-white"
-              >
-                <option value="">Select a service…</option>
-                <option value="electrical">Electrical Systems</option>
-                <option value="hvac">HVAC Systems</option>
-                <option value="fire">Fire Safety Systems</option>
-                <option value="fabrication">Fabrication Work</option>
-                <option value="amc">AMC & Maintenance</option>
-                <option value="multiple">Multiple Services</option>
-              </select>
-            </div>
+              <form onSubmit={handleSubmit} className="space-y-4">
+                {/* Name + Company */}
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5" htmlFor="modal-name">
+                      Full Name *
+                    </label>
+                    <input
+                      id="modal-name"
+                      type="text"
+                      required
+                      value={formData.name}
+                      onChange={handleChange}
+                      placeholder="Your name"
+                      className="w-full border border-slate-200 rounded-sm px-3 py-2.5 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5" htmlFor="modal-company">
+                      Company / Organization
+                    </label>
+                    <input
+                      id="modal-company"
+                      type="text"
+                      value={formData.company}
+                      onChange={handleChange}
+                      placeholder="Company name"
+                      className="w-full border border-slate-200 rounded-sm px-3 py-2.5 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
+                    />
+                  </div>
+                </div>
 
-            {/* Message */}
-            <div>
-              <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5" htmlFor="modal-message">
-                Project Details
-              </label>
-              <textarea
-                id="modal-message"
-                rows={3}
-                placeholder="Briefly describe your project scope, location, and timeline…"
-                className="w-full border border-slate-200 rounded-sm px-3 py-2.5 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors resize-none"
-              />
-            </div>
+                {/* Email + Phone */}
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5" htmlFor="modal-email">
+                      Email Address *
+                    </label>
+                    <input
+                      id="modal-email"
+                      type="email"
+                      required
+                      value={formData.email}
+                      onChange={handleChange}
+                      placeholder="you@company.com"
+                      className="w-full border border-slate-200 rounded-sm px-3 py-2.5 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5" htmlFor="modal-phone">
+                      Phone Number *
+                    </label>
+                    <input
+                      id="modal-phone"
+                      type="tel"
+                      required
+                      value={formData.phone}
+                      onChange={handleChange}
+                      placeholder="+91 XXXXX XXXXX"
+                      className="w-full border border-slate-200 rounded-sm px-3 py-2.5 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
+                    />
+                  </div>
+                </div>
 
-            {/* Submit */}
-            <button
-              type="submit"
-              style={{ color: '#ffffff', backgroundColor: '#1d4ed8' }}
-              className="w-full font-semibold py-3 rounded-sm transition-colors duration-200 text-sm mt-2 cursor-pointer hover:opacity-90"
-            >
-              Submit Request
-            </button>
-          </form>
+                {/* Service */}
+                <div>
+                  <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5" htmlFor="modal-service">
+                    Service Required *
+                  </label>
+                  <select
+                    id="modal-service"
+                    required
+                    value={formData.service}
+                    onChange={handleChange}
+                    className="w-full border border-slate-200 rounded-sm px-3 py-2.5 text-sm text-slate-800 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors bg-white"
+                  >
+                    <option value="">Select a service…</option>
+                    <option value="electrical">Electrical Systems</option>
+                    <option value="hvac">HVAC Systems</option>
+                    <option value="fire">Fire Safety Systems</option>
+                    <option value="amc">AMC & Maintenance</option>
+                    <option value="multiple">Multiple Services</option>
+                  </select>
+                </div>
+
+                {/* Message */}
+                <div>
+                  <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5" htmlFor="modal-message">
+                    Project Details
+                  </label>
+                  <textarea
+                    id="modal-message"
+                    rows={3}
+                    value={formData.message}
+                    onChange={handleChange}
+                    placeholder="Briefly describe your project scope, location, and timeline…"
+                    className="w-full border border-slate-200 rounded-sm px-3 py-2.5 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors resize-none"
+                  />
+                </div>
+
+                {/* Submit */}
+                <button
+                  type="submit"
+                  disabled={status.loading}
+                  style={{ color: '#ffffff', backgroundColor: '#1d4ed8' }}
+                  className={`w-full font-semibold py-3 rounded-sm transition-colors duration-200 text-sm mt-2 flex items-center justify-center gap-2 ${status.loading ? 'opacity-70 cursor-not-allowed' : 'cursor-pointer hover:opacity-90'}`}
+                >
+                  {status.loading ? (
+                    <>
+                      <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      Submitting...
+                    </>
+                  ) : (
+                    'Submit Request'
+                  )}
+                </button>
+              </form>
+            </>
+          )}
         </div>
       </div>
     </div>

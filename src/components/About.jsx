@@ -1,8 +1,9 @@
-const MILESTONES = [
-  { year: '2012', text: 'Founded with a focus on electrical engineering solutions' },
-  { year: '2016', text: 'Expanded into HVAC and mechanical systems' },
-  { year: '2019', text: 'Launched fire safety and fabrication verticals' },
-  { year: '2023', text: 'Scaling AMC services across industrial clients' },
+const VALUES = [
+  { icon: '✓', text: 'Integrity & Transparency' },
+  { icon: '✓', text: 'Technical Excellence' },
+  { icon: '✓', text: 'Safety First Approach' },
+  { icon: '✓', text: 'Commitment to Quality' },
+  { icon: '✓', text: 'Continuous Improvement' },
 ];
 
 export default function About() {
@@ -28,19 +29,18 @@ export default function About() {
               className="text-3xl sm:text-4xl font-extrabold text-slate-900 leading-tight mb-6"
               style={{ fontFamily: 'Barlow, sans-serif' }}
             >
-              Engineering Solutions Built on Integrity & Expertise
+              Integrated Engineering Solutions — Built on Quality & Trust
             </h2>
             <p className="text-slate-600 text-base leading-relaxed mb-5">
-              KRIDHA Engineering & Services is a multi-discipline engineering company
-              delivering comprehensive solutions across Electrical Systems, HVAC, Fire Safety,
-              and Fabrication. We serve commercial, industrial, and infrastructure clients with
-              a commitment to quality workmanship and regulatory compliance.
+              Kridha Engineering & Services is a professionally managed engineering company
+              delivering integrated solutions in Electrical Systems, Air Conditioning (HVAC), and
+              Fire Safety serving residential, commercial, and industrial projects.
             </p>
             <p className="text-slate-600 text-base leading-relaxed mb-8">
-              Our teams of qualified engineers and technicians bring deep domain expertise to
-              every project, from design and installation through testing, commissioning, and
-              ongoing maintenance. We are trusted by facility managers, contractors, and
-              business owners who demand reliability above all else.
+              We specialize in end-to-end services — from product sales and system design to
+              installation, commissioning, and maintenance — ensuring safe, efficient, and
+              high-performance infrastructure with a strong commitment to quality, compliance,
+              and timely execution.
             </p>
 
             {/* Values */}
@@ -49,7 +49,7 @@ export default function About() {
                 { icon: '✓', label: 'Safety First' },
                 { icon: '✓', label: 'Regulatory Compliance' },
                 { icon: '✓', label: 'On-Time Delivery' },
-                { icon: '✓', label: 'Certified Engineers' },
+                { icon: '✓', label: 'Quality Products' },
               ].map((item) => (
                 <div key={item.label} className="flex items-center gap-2.5">
                   <div className="w-5 h-5 bg-blue-700 flex items-center justify-center rounded-sm flex-shrink-0">
@@ -75,21 +75,19 @@ export default function About() {
               />
               <div className="relative">
                 <div className="text-slate-400 text-xs font-semibold tracking-widest uppercase mb-5">
-                  Company Timeline
+                  Our Values
                 </div>
-                <div className="space-y-4">
-                  {MILESTONES.map((m) => (
-                    <div key={m.year} className="flex gap-4 items-start">
-                      <div
-                        className="text-blue-400 font-bold text-sm w-10 flex-shrink-0 mt-0.5"
-                        style={{ fontFamily: 'Barlow, sans-serif' }}
-                      >
-                        {m.year}
-                      </div>
-                      <div className="flex-1">
-                        <div className="w-full h-px bg-slate-700 mb-2" />
-                        <p className="text-slate-300 text-sm leading-relaxed">{m.text}</p>
-                      </div>
+                <div className="space-y-3">
+                  {[
+                    'Integrity & Transparency',
+                    'Technical Excellence',
+                    'Safety First Approach',
+                    'Commitment to Quality',
+                    'Continuous Improvement',
+                  ].map((val) => (
+                    <div key={val} className="flex gap-3 items-center">
+                      <div className="w-1.5 h-1.5 bg-blue-500 rounded-full flex-shrink-0" />
+                      <p className="text-slate-300 text-sm">{val}</p>
                     </div>
                   ))}
                 </div>
@@ -99,9 +97,9 @@ export default function About() {
             {/* Trust badges row */}
             <div className="grid grid-cols-3 gap-3">
               {[
-                { value: 'ISO', sub: 'Aligned Practices' },
-                { value: '24/7', sub: 'Support Available' },
                 { value: 'AMC', sub: 'Service Contracts' },
+                { value: '24/7', sub: 'Support Available' },
+                { value: '3', sub: 'Core Disciplines' },
               ].map((badge) => (
                 <div
                   key={badge.value}

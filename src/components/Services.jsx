@@ -6,10 +6,10 @@ const SERVICES = [
         <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
       </svg>
     ),
-    title: 'Electrical Systems',
+    title: 'Electrical Sales & Installations',
     description:
-      'Complete electrical contracting — LV/MV panel installation, cable laying, earthing systems, transformer work, power distribution, and switchgear commissioning.',
-    tags: ['LV/MV Panels', 'Power Distribution', 'Earthing', 'Commissioning'],
+      'End-to-end electrical solutions — LT & HT installations, internal & external electrification, panels & distribution systems, structured cabling, wiring, testing & commissioning.',
+    tags: ['LT & HT Installations', 'Panels & Distribution', 'Structured Cabling', 'Testing & Commissioning'],
   },
   {
     id: 'hvac',
@@ -18,10 +18,10 @@ const SERVICES = [
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
       </svg>
     ),
-    title: 'HVAC Systems',
+    title: 'Air Conditioning (HVAC) Sales & Installations',
     description:
-      'Design, supply, installation, and commissioning of air handling units, ducting systems, VRF/VRV systems, chillers, cooling towers, and BMS integration.',
-    tags: ['AHU & FCU', 'VRF/VRV Systems', 'Ducting', 'BMS Integration'],
+      'Energy-efficient cooling solutions — VRV/VRF systems, centralized & ductable AC, split & package units, HVAC design & load calculations, installation, commissioning, and AMC.',
+    tags: ['VRV / VRF Systems', 'Ductable AC', 'HVAC Design', 'Annual Maintenance'],
   },
   {
     id: 'fire',
@@ -31,22 +31,10 @@ const SERVICES = [
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 18a3.75 3.75 0 00.495-7.467 5.99 5.99 0 00-1.925 3.546 5.974 5.974 0 01-2.133-1A3.75 3.75 0 0012 18z" />
       </svg>
     ),
-    title: 'Fire Safety Systems',
+    title: 'Fire Safety Sales & Installations',
     description:
-      'Comprehensive fire protection — sprinkler systems, fire alarm panels, suppression systems, hydrant networks, emergency lighting, and NBC/NFPA compliance.',
-    tags: ['Sprinkler Systems', 'Fire Alarms', 'Hydrant Networks', 'NBC Compliance'],
-  },
-  {
-    id: 'fabrication',
-    icon: (
-      <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437l1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008z" />
-      </svg>
-    ),
-    title: 'Fabrication Work',
-    description:
-      'Structural and architectural steel fabrication — cable trays, MS structures, canopies, equipment enclosures, platforms, and custom metal work for industrial sites.',
-    tags: ['Structural Steel', 'Cable Trays', 'MS Structures', 'Custom Metalwork'],
+      'Comprehensive fire protection installed in strict accordance with safety norms — alarm & detection systems, firefighting, hydrant & sprinkler systems, smoke suppression & compliance.',
+    tags: ['Fire Alarm & Detection', 'Hydrant & Sprinklers', 'Smoke Suppression', 'Safety Compliance'],
   },
 ];
 
@@ -74,13 +62,13 @@ export default function Services() {
               Our Core Services
             </h2>
             <p className="text-slate-500 text-sm max-w-xs sm:text-right">
-              Four integrated engineering disciplines under one roof.
+              Three integrated engineering disciplines under one roof.
             </p>
           </div>
         </div>
 
         {/* Cards grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {SERVICES.map((service) => (
             <div
               key={service.id}

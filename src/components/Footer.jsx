@@ -1,10 +1,10 @@
 const FOOTER_SERVICES = [
-  'Electrical Systems',
-  'HVAC Systems',
+  'Electrical Sales & Installations',
+  'HVAC / AC Systems',
   'Fire Safety Systems',
-  'Fabrication Work',
-  'AMC & Maintenance',
+  'Annual Maintenance Contracts',
   'Testing & Commissioning',
+  'Operation & Maintenance Support',
 ];
 
 const FOOTER_LINKS = [
@@ -24,7 +24,7 @@ export default function Footer() {
 
   return (
     <footer
-      className="bg-slate-900 text-slate-400"
+      className="bg-slate-900 text-slate-400 min-w-screen"
       style={{ fontFamily: 'Inter, system-ui, sans-serif' }}
     >
       {/* Main footer */}
@@ -103,24 +103,24 @@ export default function Footer() {
                 </svg>
                 <address className="text-sm text-slate-500 not-italic leading-relaxed">
                   KRIDHA Engineering & Services<br />
-                  Plot No. 42, Industrial Area,<br />
-                  Sector 5, New Delhi — 110001
+                  B-92, Sector-64,<br />
+                  Noida
                 </address>
               </div>
 
               {/* Phone */}
               <div className="flex flex-col gap-2">
-                <a href="tel:+911100000001" className="flex items-center gap-3 text-sm text-slate-400 hover:text-blue-400 transition-colors group">
+                <a href="tel:+918447039906" className="flex items-center gap-3 text-sm text-slate-400 hover:text-blue-400 transition-colors group">
                   <svg className="w-4 h-4 text-blue-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
-                  +91-11-0000-0001
+                  +91 8447039906
                 </a>
-                <a href="tel:+911100000002" className="flex items-center gap-3 text-sm text-slate-400 hover:text-blue-400 transition-colors">
+                <a href="tel:+919560898125" className="flex items-center gap-3 text-sm text-slate-400 hover:text-blue-400 transition-colors">
                   <svg className="w-4 h-4 text-blue-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
-                  +91-11-0000-0002
+                  +91 9560898125
                 </a>
               </div>
 
@@ -143,7 +143,7 @@ export default function Footer() {
             © {new Date().getFullYear()} KRIDHA Engineering & Services. All rights reserved.
           </p>
           <p className="text-slate-700 text-xs">
-            Electrical · HVAC · Fire Safety · Fabrication
+            Electrical · HVAC · Fire Safety
           </p>
         </div>
       </div>
