@@ -42,7 +42,9 @@ export default async function handler(req, res) {
         credentials: {
           client_email: process.env.GOOGLE_CLIENT_EMAIL,
           // Replace escaped newlines with actual newlines to fix Vercel env formatting
-          private_key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+          private_key: process.env.GOOGLE_PRIVATE_KEY
+            ? process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n')
+            : undefined,
         },
         scopes: ['https://www.googleapis.com/auth/spreadsheets'],
       });
