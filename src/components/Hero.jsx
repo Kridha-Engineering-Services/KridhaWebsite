@@ -71,7 +71,7 @@ export default function Hero({ onQuoteClick }) {
 
           {/* Subtext */}
           <p className="text-slate-300 text-lg sm:text-xl max-w-2xl mx-auto mb-10 leading-relaxed font-light">
-            Kridha delivers end-to-end engineering solutions — from electrical
+            Kridha. delivers end-to-end engineering solutions — from electrical
             systems and HVAC to fire safety — built on precision,
             compliance, and trust.
           </p>
