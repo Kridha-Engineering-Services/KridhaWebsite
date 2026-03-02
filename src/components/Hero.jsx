@@ -19,28 +19,30 @@ export default function Hero({ onQuoteClick }) {
 
       {/* Subtle grid overlay */}
       <div
-        className="absolute inset-0 opacity-10 z-0"
+        className="absolute inset-0 opacity-5 md:opacity-10 z-0"
         style={{
-          backgroundImage: `linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
-                            linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)`,
+          backgroundImage: `linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                            linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)`,
           backgroundSize: '60px 60px',
         }}
       />
 
       {/* Blueprint lines — industrial feel (Moved to LEFT) */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-        <div className="absolute top-1/4 left-0 w-96 h-px bg-gradient-to-r from-blue-500/30 to-transparent" />
-        <div className="absolute top-1/2 left-0 w-64 h-px bg-gradient-to-r from-blue-400/20 to-transparent" />
-        <div className="absolute bottom-1/3 left-0 w-80 h-px bg-gradient-to-r from-blue-500/30 to-transparent" />
+        <div className="absolute top-1/4 left-0 w-96 h-px bg-gradient-to-r from-blue-500/10 md:from-blue-500/30 to-transparent" />
+        <div className="absolute top-1/2 left-0 w-64 h-px bg-gradient-to-r from-blue-400/5 md:from-blue-400/20 to-transparent" />
+        <div className="absolute bottom-1/3 left-0 w-80 h-px bg-gradient-to-r from-blue-500/10 md:from-blue-500/30 to-transparent" />
         <div
-          className="absolute -left-40 top-1/4 w-96 h-96 rounded-full border border-blue-500/20"
+          className="absolute -left-40 top-1/4 w-96 h-96 rounded-full border border-blue-500/10 md:border-blue-500/20"
           style={{ borderWidth: '1px' }}
         />
         <div
-          className="absolute -left-20 top-1/4 w-64 h-64 rounded-full border border-blue-500/20"
+          className="absolute -left-20 top-1/4 w-64 h-64 rounded-full border border-blue-500/10 md:border-blue-500/20"
           style={{ borderWidth: '1px' }}
         />
       </div>
+
+
 
       {/* Diagonal accent (Moved to LEFT) */}
       <div className="absolute left-0 top-0 bottom-0 w-1/3 lg:w-2/5 bg-gradient-to-r from-blue-900/50 to-transparent hidden md:block z-0" />

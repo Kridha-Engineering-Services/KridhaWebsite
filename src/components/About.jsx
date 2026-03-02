@@ -66,13 +66,15 @@ export default function About() {
             {/* Industrial graphic card */}
             <div className="bg-slate-900 rounded-sm p-6 relative overflow-hidden">
               <div
-                className="absolute inset-0 opacity-5"
+                className="absolute inset-0 opacity-[0.03] md:opacity-5"
                 style={{
                   backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
                                     linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
                   backgroundSize: '30px 30px',
                 }}
               />
+
+
               <div className="relative">
                 <div className="text-slate-400 text-xs font-semibold tracking-widest uppercase mb-5">
                   Our Values
