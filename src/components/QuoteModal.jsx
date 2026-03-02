@@ -82,9 +82,9 @@ export default function QuoteModal({ isOpen, onClose }) {
       />
 
       {/* Modal panel */}
-      <div className="relative bg-white w-full max-w-lg rounded-sm shadow-2xl overflow-hidden animate-fade-in">
+      <div className="relative bg-white w-full max-w-lg rounded-sm shadow-2xl animate-fade-in max-h-[90vh] flex flex-col">
         {/* Header */}
-        <div className="bg-slate-900 px-6 py-5 flex items-start justify-between">
+        <div className="bg-slate-900 px-6 py-5 flex items-start justify-between flex-shrink-0">
           <div>
             <div className="inline-flex items-center gap-2 mb-1">
               <div className="w-4 h-0.5 bg-blue-500" />
@@ -112,7 +112,7 @@ export default function QuoteModal({ isOpen, onClose }) {
         </div>
 
         {/* Form body */}
-        <div className="px-6 py-6">
+        <div className="px-6 py-6 overflow-y-auto custom-scrollbar">
           {status.success ? (
             <div className="text-center py-8">
               <div className="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">

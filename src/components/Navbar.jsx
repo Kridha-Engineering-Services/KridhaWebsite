@@ -28,35 +28,34 @@ export default function Navbar({ onQuoteClick }) {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? 'bg-white border-b border-slate-200 shadow-sm'
-          : 'bg-white/95 backdrop-blur-sm border-b border-transparent'
-      }`}
+      className={`fixed z-50 transition-all duration-500 rounded-2xl
+        top-2 sm:top-4 left-1/2 -translate-x-1/2 w-[94%] sm:w-[95%] max-w-7xl
+        ${
+          menuOpen
+            ? 'bg-transparent border-transparent shadow-none py-1.5' // Invisible base when full mobile menu is open
+            : scrolled
+              ? 'bg-white/80 backdrop-blur-xl border border-white/50 shadow-lg py-1'
+              : 'bg-white/10 backdrop-blur-md border border-white/20 shadow-xl py-1.5'
+        }
+      `}
       style={{ fontFamily: 'Inter, system-ui, sans-serif' }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 lg:h-18">
+      <div className="px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between py-1">
           {/* Logo */}
           <a
             href="#home"
             onClick={(e) => handleNavClick(e, '#home')}
-            className="flex items-center gap-2.5 group"
+            className="flex items-center group focus:outline-none"
           >
-            <div className="w-9 h-9 flex items-center justify-center rounded-sm flex-shrink-0 transition-colors duration-200"
-              style={{ backgroundColor: '#1d4ed8' }}>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                <path d="M3 18V9L12 3L21 9V18H15V13H9V18H3Z" fill="white" />
-              </svg>
-            </div>
-            <div className="leading-none">
-              <div className="text-slate-900 font-bold text-base tracking-tight" style={{ fontFamily: 'Barlow, sans-serif' }}>
-                KRIDHA
-              </div>
-              <div className="text-slate-500 text-xs font-medium tracking-widest uppercase mt-0.5">
-                Engineering &amp; Services
-              </div>
-            </div>
+            <img 
+              src="./logo-bg.png" 
+              loading="lazy" 
+              alt="Kridha Engineering Logo" 
+              className={`w-auto object-contain transition-all duration-300 group-hover:scale-105 origin-left ${
+                scrolled ? 'h-9 sm:h-12 lg:h-14 drop-shadow-sm' : 'h-10 sm:h-14 lg:h-16 drop-shadow-md'
+              }`}
+            />
           </a>
 
           {/* Desktop Nav */}
@@ -66,7 +65,11 @@ export default function Navbar({ onQuoteClick }) {
                 key={link.href}
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
-                className="px-3 py-2 text-sm font-medium text-slate-600 hover:text-blue-700 transition-colors duration-200 rounded-md hover:bg-blue-50"
+                className={`px-4 py-2 text-sm font-semibold transition-all duration-300 rounded-full hover:bg-blue-600/10 ${
+                  scrolled 
+                    ? 'text-slate-600 hover:text-blue-700' 
+                    : 'text-slate-200 hover:text-white hover:bg-white/10'
+                }`}
               >
                 {link.label}
               </a>
@@ -77,24 +80,30 @@ export default function Navbar({ onQuoteClick }) {
           <div className="flex items-center gap-3">
             <button
               onClick={onQuoteClick}
-              style={{ color: '#ffffff', backgroundColor: '#1d4ed8' }}
-              className="hidden sm:inline-flex items-center gap-2 text-sm font-semibold px-4 py-2 rounded-sm transition-all duration-200 cursor-pointer hover:opacity-90"
+              style={{ color: '#ffffff', backgroundColor: '#2563eb' }}
+              className="hidden sm:inline-flex items-center gap-2 text-sm font-bold px-5 py-2.5 rounded-full shadow-md shadow-blue-500/20 transition-transform duration-300 cursor-pointer hover:-translate-y-0.5"
             >
               Request a Quote
             </button>
 
             {/* Mobile hamburger */}
             <button
-              className="lg:hidden p-2 rounded-md text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors"
+              className={`lg:hidden p-2 transition-colors relative z-50 ${
+                menuOpen 
+                  ? 'text-slate-900' 
+                  : scrolled 
+                    ? 'text-slate-900' 
+                    : 'text-white drop-shadow-md'
+              }`}
               onClick={() => setMenuOpen(!menuOpen)}
               aria-label="Toggle menu"
             >
               {menuOpen ? (
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 </svg>
               ) : (
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
               )}
@@ -103,24 +112,24 @@ export default function Navbar({ onQuoteClick }) {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Full Screen Overlay */}
       {menuOpen && (
-        <div className="lg:hidden bg-white border-t border-slate-100 shadow-lg">
-          <nav className="max-w-7xl mx-auto px-4 py-3 flex flex-col">
+        <div className="lg:hidden fixed inset-0 z-40 bg-white/95 backdrop-blur-2xl flex flex-col items-center justify-center animate-fade-in">
+          <nav className="flex flex-col items-center gap-6 w-full px-6">
             {NAV_LINKS.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
-                className="py-3 px-2 text-sm font-medium text-slate-700 hover:text-blue-700 border-b border-slate-50 last:border-0 transition-colors"
+                className="text-2xl font-bold text-slate-800 hover:text-blue-600 transition-colors"
+                style={{ fontFamily: 'Barlow, sans-serif' }}
               >
                 {link.label}
               </a>
             ))}
             <button
               onClick={() => { setMenuOpen(false); onQuoteClick(); }}
-              style={{ color: '#ffffff', backgroundColor: '#1d4ed8' }}
-              className="mt-3 mb-1 w-full text-sm font-semibold py-2.5 rounded-sm transition-colors hover:opacity-90 cursor-pointer"
+              className="mt-6 px-8 py-3.5 bg-blue-600 text-white font-bold rounded-full w-full max-w-xs shadow-lg shadow-blue-500/20 active:scale-95 transition-transform"
             >
               Request a Quote
             </button>

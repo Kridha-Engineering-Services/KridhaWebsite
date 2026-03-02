@@ -18,7 +18,7 @@ export default function Home() {
   return (
     <>
       <Navbar onQuoteClick={openModal} />
-      <main className='min-w-screen'>
+      <main className='w-full'>
         <Hero onQuoteClick={openModal} />
         <About />
         <Services />

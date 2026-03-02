@@ -24,7 +24,7 @@ export default function Footer() {
 
   return (
     <footer
-      className="bg-slate-900 text-slate-400 min-w-screen"
+      className="bg-slate-900 text-slate-400 w-full"
       style={{ fontFamily: 'Inter, system-ui, sans-serif' }}
     >
       {/* Main footer */}
@@ -32,20 +32,13 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand column */}
           <div className="sm:col-span-2 lg:col-span-1">
-            <div className="flex items-center gap-2.5 mb-4">
-              <div className="w-9 h-9 bg-blue-700 flex items-center justify-center rounded-sm flex-shrink-0">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                  <path d="M3 18V9L12 3L21 9V18H15V13H9V18H3Z" fill="white" />
-                </svg>
-              </div>
-              <div>
-                <div className="text-white font-bold text-base tracking-tight" style={{ fontFamily: 'Barlow, sans-serif' }}>
-                  KRIDHA
-                </div>
-                <div className="text-slate-500 text-xs tracking-widest uppercase">
-                  Engineering & Services
-                </div>
-              </div>
+            <div className="mb-6">
+              <img 
+                src="./logo-bg.png" 
+                loading="lazy" 
+                alt="Kridha Engineering Logo" 
+                className="h-16 sm:h-20 lg:h-24 w-auto object-contain brightness-90 contrast-125 grayscale-[20%]"
+              />
             </div>
             <p className="text-slate-500 text-sm leading-relaxed mt-4 max-w-xs">
               Delivering end-to-end engineering solutions across Electrical, HVAC,

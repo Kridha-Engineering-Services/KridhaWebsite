@@ -53,33 +53,70 @@ export default function Leadership() {
         </div>
 
         {/* Cards */}
-        <div className="grid sm:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-3 gap-8">
           {LEADERS.map((leader) => (
             <div
               key={leader.id}
-              className="group bg-white border border-slate-200 rounded-sm overflow-hidden hover:shadow-md hover:border-slate-300 transition-all duration-300"
+              className="group relative bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-[0_10px_40px_-15px_rgba(29,78,216,0.15)] transition-all duration-500 hover:-translate-y-2 border border-slate-200 p-8 flex flex-col h-full z-10"
             >
-              {/* Top bar */}
-              <div className={`${leader.color} px-6 py-8 flex items-start gap-4`}>
-                {/* Avatar */}
-                <div className="w-14 h-14 rounded-sm bg-white/20 flex items-center justify-center flex-shrink-0">
-                  <span className="text-white font-bold text-xl" style={{ fontFamily: 'Barlow, sans-serif' }}>
-                    {leader.initials}
-                  </span>
-                </div>
-                <div>
-                  <div className="text-white font-bold text-base leading-tight" style={{ fontFamily: 'Barlow, sans-serif' }}>
-                    {leader.name}
-                  </div>
-                  <div className="text-blue-200 text-xs font-medium mt-1 uppercase tracking-wider">
-                    {leader.designation}
-                  </div>
-                </div>
+              {/* Decorative Background Element (Large faded initial) */}
+              <div 
+                className="absolute -right-4 -top-8 text-[180px] font-black text-slate-50 opacity-50 pointer-events-none transition-transform duration-700 group-hover:scale-110 group-hover:-rotate-6 z-0"
+                style={{ fontFamily: 'Barlow, sans-serif' }}
+              >
+                {leader.initials.charAt(0)}
               </div>
 
-              {/* Body */}
-              <div className="px-6 py-5">
-                <p className="text-slate-500 text-sm leading-relaxed">{leader.bio}</p>
+              {/* Top Accent Line */}
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-600 to-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
+
+              <div className="relative z-10 flex flex-col h-full">
+                {/* Avatar & Name Row */}
+                <div className="flex items-center gap-5 mb-6">
+                  {/* Clean Avatar */}
+                  <div className="w-16 h-16 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center flex-shrink-0 shadow-inner group-hover:border-blue-100 group-hover:bg-blue-50/50 transition-colors duration-300">
+                    <span 
+                      className="text-blue-600 font-extrabold text-xl tracking-wider" 
+                      style={{ fontFamily: 'Barlow, sans-serif' }}
+                    >
+                      {leader.initials}
+                    </span>
+                  </div>
+                  
+                  {/* Name & Title */}
+                  <div>
+                    <h3 
+                      className="text-slate-900 font-extrabold text-xl group-hover:text-blue-700 transition-colors duration-300" 
+                      style={{ fontFamily: 'Barlow, sans-serif', letterSpacing: '-0.01em' }}
+                    >
+                      {leader.name}
+                    </h3>
+                    <p className="text-blue-600/80 text-xs font-bold mt-1 uppercase tracking-widest">
+                      {leader.designation}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Body */}
+                <p className="text-slate-500 text-sm leading-relaxed font-light mb-8 flex-grow group-hover:text-slate-600 transition-colors duration-300">
+                  {leader.bio}
+                </p>
+
+                {/* Bottom detail */}
+                <div className="mt-auto flex items-center justify-between">
+                  {/* Small animated line */}
+                  <div className="w-8 h-px bg-slate-200 group-hover:w-16 group-hover:bg-blue-400 transition-all duration-500 ease-in-out" />
+                  
+                  {/* Small arrow icon appearing on hover */}
+                  <svg 
+                    className="w-5 h-5 text-slate-300 group-hover:text-blue-600 transform translate-x-0 group-hover:translate-x-1 opacity-0 group-hover:opacity-100 transition-all duration-500" 
+                    fill="none" 
+                    viewBox="0 0 24 24" 
+                    stroke="currentColor"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </div>
               </div>
             </div>
           ))}
