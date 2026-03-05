@@ -34,10 +34,10 @@ export default function Footer() {
           <div className="sm:col-span-2 lg:col-span-1">
             <div className="mb-6">
               <img 
-                src="./logo-bg.png" 
+                src="./FooterLogo1.png" 
                 loading="lazy" 
                 alt="Kridha Engineering Logo" 
-                className="h-16 sm:h-20 lg:h-24 w-auto object-contain brightness-90 contrast-125 grayscale-[20%]"
+                className="h-20 sm:h-24 lg:h-28 w-auto object-contain brightness-90 contrast-125 grayscale-[20%]"
               />
             </div>
             <p className="text-slate-500 text-sm leading-relaxed mt-4 max-w-xs">
@@ -109,11 +109,11 @@ export default function Footer() {
                   </svg>
                   +91 8447039906
                 </a>
-                <a href="tel:+919560898125" className="flex items-center gap-3 text-sm text-slate-400 hover:text-blue-400 transition-colors">
+                <a href="tel:+918447781925" className="flex items-center gap-3 text-sm text-slate-400 hover:text-blue-400 transition-colors">
                   <svg className="w-4 h-4 text-blue-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
-                  +91 9560898125
+                  +91 8447781925
                 </a>
               </div>
 

@@ -50,7 +50,7 @@ export default function Navbar({ onQuoteClick }) {
               className="flex items-center group focus:outline-none"
             >
               <img 
-                src="./logo-bg.png" 
+                src="./NavLogo.png" 
                 loading="lazy" 
                 alt="Kridha Engineering Logo" 
                 className={`w-auto object-contain transition-all duration-300 group-hover:scale-105 origin-left ${

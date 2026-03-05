@@ -16,9 +16,9 @@ const LEADERS = [
     color: 'bg-slate-800',
   },
   {
-    id: 'pa',
-    initials: 'PA',
-    name: 'Mr. Parvez Alam',
+    id: 'ps',
+    initials: 'PS',
+    name: 'Mrs. Pooja Sharma',
     designation: 'Director — Sales & Marketing',
     bio: 'Bringing deep expertise in Sales & Marketing within Electrical, HVAC, and Fire Safety domains, driving client engagement, business development, and long-term partnerships.',
     color: 'bg-blue-900',
