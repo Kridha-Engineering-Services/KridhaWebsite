@@ -41,7 +41,7 @@ export default function Navbar({ onQuoteClick }) {
           }
         `}
         style={{
-          backgroundColor: isLight ? 'rgba(255,255,255,0.96)' : 'rgba(255,255,255,0.2)',
+          backgroundColor: 'rgba(255,255,255,0.7)',
           fontFamily: 'Inter, system-ui, sans-serif',
         }}
       >
@@ -73,10 +73,10 @@ export default function Navbar({ onQuoteClick }) {
                   onClick={(e) => handleNavClick(e, link.href)}
                   className="px-4 py-2 text-sm font-semibold transition-all duration-300 rounded-full"
                   style={{
-                    color: isLight ? '#374151' : 'rgba(255,255,255,0.85)',
+                    color: '#374151',
                   }}
-                  onMouseEnter={(e) => { e.currentTarget.style.color = '#96131e'; e.currentTarget.style.backgroundColor = isLight ? '#fdf2f3' : 'rgba(244,187,0,0.12)'; }}
-                  onMouseLeave={(e) => { e.currentTarget.style.color = isLight ? '#374151' : 'rgba(255,255,255,0.85)'; e.currentTarget.style.backgroundColor = 'transparent'; }}
+                  onMouseEnter={(e) => { e.currentTarget.style.color = '#96131e'; e.currentTarget.style.backgroundColor = '#fdf2f3'; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.color = '#374151'; e.currentTarget.style.backgroundColor = 'transparent'; }}
                 >
                   {link.label}
                 </a>
@@ -98,7 +98,7 @@ export default function Navbar({ onQuoteClick }) {
               {/* Mobile hamburger */}
               <button
                 className={`lg:hidden p-2 transition-colors relative z-50`}
-                style={{ color: isLight ? '#96131e' : 'white', background: 'none', border: 'none' }}
+                style={{ color: '#96131e', background: 'none', border: 'none' }}
                 onClick={() => setMenuOpen(!menuOpen)}
                 aria-label="Toggle menu"
               >

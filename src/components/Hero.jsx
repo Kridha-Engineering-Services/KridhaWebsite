@@ -174,7 +174,7 @@ export default function Hero({ onQuoteClick }) {
       <button
         onClick={prev}
         aria-label="Previous slide"
-        className="absolute left-5 sm:left-10 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full flex items-center justify-center text-white transition-all duration-300 cursor-pointer hover:scale-110"
+        className="hidden sm:flex absolute left-5 sm:left-10 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full items-center justify-center text-white transition-all duration-300 cursor-pointer hover:scale-110"
         style={{
           background: 'rgba(255,255,255,0.12)',
           backdropFilter: 'blur(8px)',
@@ -189,7 +189,7 @@ export default function Hero({ onQuoteClick }) {
       <button
         onClick={next}
         aria-label="Next slide"
-        className="absolute right-5 sm:right-10 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full flex items-center justify-center text-white transition-all duration-300 cursor-pointer hover:scale-110"
+        className="hidden sm:flex absolute right-5 sm:right-10 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full items-center justify-center text-white transition-all duration-300 cursor-pointer hover:scale-110"
         style={{
           background: 'rgba(255,255,255,0.12)',
           backdropFilter: 'blur(8px)',
