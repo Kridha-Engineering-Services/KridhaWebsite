@@ -84,11 +84,11 @@ export default function QuoteModal({ isOpen, onClose }) {
       {/* Modal panel */}
       <div className="relative bg-white w-full max-w-lg rounded-sm shadow-2xl animate-fade-in max-h-[90vh] flex flex-col">
         {/* Header */}
-        <div className="bg-slate-900 px-6 py-5 flex items-start justify-between flex-shrink-0">
+        <div className="px-6 py-5 flex items-start justify-between flex-shrink-0" style={{ backgroundColor: '#96131e' }}>
           <div>
             <div className="inline-flex items-center gap-2 mb-1">
-              <div className="w-4 h-0.5 bg-blue-500" />
-              <span className="text-blue-400 text-xs font-semibold tracking-[0.2em] uppercase">
+              <div className="w-4 h-0.5" style={{ backgroundColor: '#f4bb00' }} />
+              <span className="text-xs font-semibold tracking-[0.2em] uppercase" style={{ color: '#f4bb00' }}>
                 KRIDHA Engineering
               </span>
             </div>
@@ -115,7 +115,7 @@ export default function QuoteModal({ isOpen, onClose }) {
         <div className="px-6 py-6 overflow-y-auto custom-scrollbar">
           {status.success ? (
             <div className="text-center py-8">
-              <div className="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: '#fdf2f3', color: '#96131e' }}>
                 <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
@@ -240,7 +240,7 @@ export default function QuoteModal({ isOpen, onClose }) {
                 <button
                   type="submit"
                   disabled={status.loading}
-                  style={{ color: '#ffffff', backgroundColor: '#1d4ed8' }}
+                  style={{ color: '#ffffff', backgroundColor: '#96131e' }}
                   className={`w-full font-semibold py-3 rounded-sm transition-colors duration-200 text-sm mt-2 flex items-center justify-center gap-2 ${status.loading ? 'opacity-70 cursor-not-allowed' : 'cursor-pointer hover:opacity-90'}`}
                 >
                   {status.loading ? (
