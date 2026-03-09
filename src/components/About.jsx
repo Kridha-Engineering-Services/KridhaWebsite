@@ -1,23 +1,18 @@
-const VALUES = [
-  { icon: '✓', text: 'Integrity & Transparency' },
-  { icon: '✓', text: 'Technical Excellence' },
-  { icon: '✓', text: 'Safety First Approach' },
-  { icon: '✓', text: 'Commitment to Quality' },
-  { icon: '✓', text: 'Continuous Improvement' },
-];
-
 export default function About() {
   return (
     <section
       id="about"
-      className="py-24 bg-slate-50"
+      className="py-24 bg-slate-50 relative overflow-hidden"
       style={{ fontFamily: 'Inter, system-ui, sans-serif' }}
     >
+      {/* Decorative side block */}
+      <div className="absolute left-0 top-0 bottom-0 w-1" style={{ backgroundColor: '#96131e' }} />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section label */}
         <div className="inline-flex items-center gap-2 mb-4">
-          <div className="w-6 h-0.5 bg-blue-600" />
-          <span className="text-blue-600 text-xs font-semibold tracking-[0.2em] uppercase">
+          <div className="w-8 h-0.5" style={{ backgroundColor: '#f4bb00' }} />
+          <span className="text-xs font-bold tracking-[0.22em] uppercase" style={{ color: '#96131e' }}>
             Who We Are
           </span>
         </div>
@@ -29,12 +24,12 @@ export default function About() {
               className="text-3xl sm:text-4xl font-extrabold text-slate-900 leading-tight mb-6"
               style={{ fontFamily: 'Barlow, sans-serif' }}
             >
-              Integrated Engineering Solutions — Built on Quality & Trust
+              Integrated Engineering Solutions — Built on Quality &amp; Trust
             </h2>
             <p className="text-slate-600 text-base leading-relaxed mb-5">
-              Kridha Engineering & Services is a professionally managed engineering company
+              Kridha Engineering &amp; Services is a professionally managed engineering company
               delivering integrated solutions in Electrical Systems, Air Conditioning (HVAC), and
-              Fire Safety serving residential, commercial, and industrial projects.
+              Fire Safety — serving residential, commercial, and industrial projects.
             </p>
             <p className="text-slate-600 text-base leading-relaxed mb-8">
               We specialize in end-to-end services — from product sales and system design to
@@ -43,19 +38,22 @@ export default function About() {
               and timely execution.
             </p>
 
-            {/* Values */}
+            {/* Values grid */}
             <div className="grid grid-cols-2 gap-4">
               {[
-                { icon: '✓', label: 'Safety First' },
-                { icon: '✓', label: 'Regulatory Compliance' },
-                { icon: '✓', label: 'On-Time Delivery' },
-                { icon: '✓', label: 'Quality Products' },
+                'Safety First',
+                'Regulatory Compliance',
+                'On-Time Delivery',
+                'Quality Products',
               ].map((item) => (
-                <div key={item.label} className="flex items-center gap-2.5">
-                  <div className="w-5 h-5 bg-blue-700 flex items-center justify-center rounded-sm flex-shrink-0">
+                <div key={item} className="flex items-center gap-2.5">
+                  <div
+                    className="w-5 h-5 flex items-center justify-center flex-shrink-0"
+                    style={{ backgroundColor: '#96131e', borderRadius: '2px' }}
+                  >
                     <span className="text-white text-xs font-bold">✓</span>
                   </div>
-                  <span className="text-slate-700 text-sm font-medium">{item.label}</span>
+                  <span className="text-slate-700 text-sm font-medium">{item}</span>
                 </div>
               ))}
             </div>
@@ -63,20 +61,20 @@ export default function About() {
 
           {/* Right — visual panel */}
           <div className="space-y-5">
-            {/* Industrial graphic card */}
-            <div className="bg-slate-900 rounded-sm p-6 relative overflow-hidden">
+            {/* Values card */}
+            <div
+              className="rounded-sm p-6 relative overflow-hidden bg-slate-900"
+            >
               <div
-                className="absolute inset-0 opacity-[0.03] md:opacity-5"
+                className="absolute inset-0 opacity-[0.06]"
                 style={{
-                  backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
-                                    linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+                  backgroundImage: `linear-gradient(rgba(255,255,255,0.2) 1px, transparent 1px),
+                                    linear-gradient(90deg, rgba(255,255,255,0.2) 1px, transparent 1px)`,
                   backgroundSize: '30px 30px',
                 }}
               />
-
-
               <div className="relative">
-                <div className="text-slate-400 text-xs font-semibold tracking-widest uppercase mb-5">
+                <div className="text-sm font-bold tracking-widest uppercase mb-5" style={{ color: '#f4bb00' }}>
                   Our Values
                 </div>
                 <div className="space-y-3">
@@ -88,15 +86,15 @@ export default function About() {
                     'Continuous Improvement',
                   ].map((val) => (
                     <div key={val} className="flex gap-3 items-center">
-                      <div className="w-1.5 h-1.5 bg-blue-500 rounded-full flex-shrink-0" />
-                      <p className="text-slate-300 text-sm">{val}</p>
+                      <div className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: '#f4bb00' }} />
+                      <p className="text-white/90 text-sm">{val}</p>
                     </div>
                   ))}
                 </div>
               </div>
             </div>
 
-            {/* Trust badges row */}
+            {/* Trust badges */}
             <div className="grid grid-cols-3 gap-3">
               {[
                 { value: 'AMC', sub: 'Service Contracts' },
@@ -108,8 +106,8 @@ export default function About() {
                   className="bg-white border border-slate-200 rounded-sm p-4 text-center"
                 >
                   <div
-                    className="text-blue-700 font-bold text-xl"
-                    style={{ fontFamily: 'Barlow, sans-serif' }}
+                    className="font-bold text-xl"
+                    style={{ fontFamily: 'Barlow, sans-serif', color: '#96131e' }}
                   >
                     {badge.value}
                   </div>

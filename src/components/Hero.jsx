@@ -1,87 +1,137 @@
+import { useState, useEffect, useCallback } from 'react';
+
+const SLIDES = [
+  {
+    image: './photos/Electrical.jpeg',
+    tag: 'Electrical Engineering',
+    headline: 'Committed to Quality.',
+    accent: 'Driven by Engineering.',
+    body: 'End-to-end electrical solutions — HT/LT installations, distribution panels, structured cabling, and commissioning.',
+  },
+  {
+    image: './photos/hvac-installation.jpeg',
+    tag: 'HVAC & Mechanical',
+    headline: 'Engineered Comfort.',
+    accent: 'Built to Last.',
+    body: 'Energy-efficient HVAC systems — VRV/VRF, ductable AC, centralized cooling, and Annual Maintenance Contracts.',
+  },
+  {
+    image: './photos/fireSafety.png',
+    tag: 'Fire Safety',
+    headline: 'Safety You Trust.',
+    accent: 'Built to Code.',
+    body: 'Comprehensive fire protection — alarm & detection systems, hydrant & sprinkler systems, smoke suppression and full compliance.',
+  },
+];
+
 export default function Hero({ onQuoteClick }) {
+  const [current, setCurrent] = useState(0);
+  const [animating, setAnimating] = useState(false);
+
+  const goTo = useCallback((index) => {
+    if (animating) return;
+    setAnimating(true);
+    setTimeout(() => {
+      setCurrent(index);
+      setAnimating(false);
+    }, 400);
+  }, [animating]);
+
+  const next = useCallback(() => goTo((current + 1) % SLIDES.length), [current, goTo]);
+  const prev = useCallback(() => goTo((current - 1 + SLIDES.length) % SLIDES.length), [current, goTo]);
+
+  useEffect(() => {
+    const timer = setInterval(next, 6000);
+    return () => clearInterval(timer);
+  }, [next]);
+
+  const slide = SLIDES[current];
+
   return (
     <section
       id="home"
-      className="relative min-h-screen w-full flex items-center overflow-hidden bg-slate-900"
+      className="relative min-h-screen w-full flex items-center overflow-hidden"
       style={{ fontFamily: 'Inter, system-ui, sans-serif' }}
     >
-      {/* Background Image */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src="./hero.webp"
-          alt="Engineering Background"
-          className="w-full h-full object-cover opacity-30 mix-blend-luminosity"
-        />
-        {/* Gradient overlays to blend the image and ensure text readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-900/80 via-slate-900/60 to-slate-900/90" />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent" />
-      </div>
+      {/* Background slides */}
+      {SLIDES.map((s, i) => (
+        <div
+          key={i}
+          className="absolute inset-0 z-0 transition-opacity duration-700"
+          style={{ opacity: i === current ? 1 : 0 }}
+        >
+          <img
+            src={s.image}
+            alt="slide"
+            className="w-full h-full object-cover"
+            style={{ filter: 'brightness(0.38) saturate(0.8)' }}
+          />
+        </div>
+      ))}
 
-      {/* Subtle grid overlay */}
+      {/* Deep red gradient overlay — left heavy */}
       <div
-        className="absolute inset-0 opacity-5 md:opacity-10 z-0"
+        className="absolute inset-0 z-[1]"
         style={{
-          backgroundImage: `linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-                            linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)`,
+          background: 'linear-gradient(110deg, rgba(150,19,30,0.82) 0%, rgba(150,19,30,0.55) 45%, rgba(0,0,0,0.15) 100%)',
+        }}
+      />
+
+      {/* Subtle texture grid */}
+      <div
+        className="absolute inset-0 z-[1] opacity-[0.04]"
+        style={{
+          backgroundImage: `linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px),
+                            linear-gradient(90deg, rgba(255,255,255,0.15) 1px, transparent 1px)`,
           backgroundSize: '60px 60px',
         }}
       />
 
-      {/* Blueprint lines — industrial feel (Moved to LEFT) */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-        <div className="absolute top-1/4 left-0 w-96 h-px bg-gradient-to-r from-blue-500/10 md:from-blue-500/30 to-transparent" />
-        <div className="absolute top-1/2 left-0 w-64 h-px bg-gradient-to-r from-blue-400/5 md:from-blue-400/20 to-transparent" />
-        <div className="absolute bottom-1/3 left-0 w-80 h-px bg-gradient-to-r from-blue-500/10 md:from-blue-500/30 to-transparent" />
-        <div
-          className="absolute -left-40 top-1/4 w-96 h-96 rounded-full border border-blue-500/10 md:border-blue-500/20"
-          style={{ borderWidth: '1px' }}
-        />
-        <div
-          className="absolute -left-20 top-1/4 w-64 h-64 rounded-full border border-blue-500/10 md:border-blue-500/20"
-          style={{ borderWidth: '1px' }}
-        />
-      </div>
+      {/* Content */}
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-36 pt-40">
+        <div className="max-w-2xl">
 
-
-
-      {/* Diagonal accent (Moved to LEFT) */}
-      <div className="absolute left-0 top-0 bottom-0 w-1/3 lg:w-2/5 bg-gradient-to-r from-blue-900/50 to-transparent hidden md:block z-0" />
-
-      {/* Content Container */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-36 pt-38 flex justify-center">
-        <div className="max-w-3xl w-full text-center">
-          {/* Tag */}
-          <div className="inline-flex items-center justify-center gap-2 mb-6 w-full">
-            <div className="hidden sm:block w-8 h-0.5 bg-blue-500/50" />
-            <span className="text-blue-400 text-xs font-semibold tracking-[0.2em] uppercase">
-              Engineering Excellence
+          {/* Tag pill */}
+          <div
+            key={`tag-${current}`}
+            className="animate-slide-up inline-flex items-center gap-2.5 mb-6"
+            style={{ animationDuration: '0.6s' }}
+          >
+            <div className="w-8 h-0.5" style={{ backgroundColor: '#f4bb00' }} />
+            <span
+              className="text-xs font-bold tracking-[0.22em] uppercase"
+              style={{ color: '#f4bb00' }}
+            >
+              {slide.tag}
             </span>
-            <div className="hidden sm:block w-8 h-0.5 bg-blue-500/50" />
           </div>
 
           {/* Headline */}
           <h1
-            className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6"
-            style={{ fontFamily: 'Barlow, sans-serif', letterSpacing: '-0.02em' }}
+            key={`h1-${current}`}
+            className="animate-slide-up text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-4"
+            style={{ fontFamily: 'Barlow, sans-serif', letterSpacing: '-0.02em', animationDuration: '0.65s' }}
           >
-            Committed to Quality.
+            {slide.headline}
             <br />
-            <span className="text-blue-400">Driven by Engineering.</span>
+            <span style={{ color: '#f4bb00' }}>{slide.accent}</span>
           </h1>
 
-          {/* Subtext */}
-          <p className="text-slate-300 text-lg sm:text-xl max-w-2xl mx-auto mb-10 leading-relaxed font-light">
-            Kridha delivers end-to-end engineering solutions — from electrical
-            systems and HVAC to fire safety — built on precision,
-            compliance, and trust.
+          {/* Body */}
+          <p
+            key={`body-${current}`}
+            className="animate-slide-up text-slate-200 text-lg leading-relaxed mb-10 max-w-xl font-light"
+            style={{ animationDuration: '0.7s' }}
+          >
+            {slide.body}
           </p>
 
           {/* CTAs */}
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
+          <div className="flex flex-col sm:flex-row gap-4 mb-16">
             <button
               onClick={onQuoteClick}
-              style={{ color: '#ffffff', backgroundColor: '#2563eb' }}
-              className="inline-flex items-center justify-center gap-2 font-semibold px-7 py-3.5 rounded-sm transition-all duration-200 text-sm cursor-pointer hover:opacity-90 shadow-lg shadow-blue-500/20"
+              className="inline-flex items-center justify-center gap-2 font-bold px-7 py-3.5 text-sm transition-all duration-200 cursor-pointer hover:opacity-90 shadow-lg"
+              style={{ backgroundColor: '#f4bb00', color: '#1a0508' }}
             >
               Request a Quote
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -90,31 +140,28 @@ export default function Hero({ onQuoteClick }) {
             </button>
             <a
               href="#services"
-              onClick={(e) => {
-                e.preventDefault();
-                document.querySelector('#services')?.scrollIntoView({ behavior: 'smooth' });
-              }}
-              className="inline-flex items-center justify-center gap-2 border border-slate-600 hover:border-slate-400 text-slate-300 hover:text-white font-semibold px-7 py-3.5 rounded-sm transition-all duration-200 text-sm bg-slate-900/50 backdrop-blur-sm"
+              onClick={(e) => { e.preventDefault(); document.querySelector('#services')?.scrollIntoView({ behavior: 'smooth' }); }}
+              className="inline-flex items-center justify-center gap-2 font-bold px-7 py-3.5 text-sm transition-all duration-200 cursor-pointer shadow-lg hover:shadow-xl"
+              style={{ backgroundColor: 'white', color: '#1a0508' }}
+              onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.9)'; }}
+              onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'white'; }}
             >
               Our Services
             </a>
           </div>
 
-          {/* Stats row */}
-          <div className="mt-16 pt-8 border-t border-slate-700/60 grid grid-cols-3 gap-8 max-w-lg mx-auto">
+          {/* Stats */}
+          <div className="pt-8 border-t border-white/15 grid grid-cols-3 gap-8 max-w-sm">
             {[
               { value: '20+', label: 'Years Leadership' },
               { value: '100%', label: 'Safety Record' },
-              { value: '3', label: 'Core Disciplines' },
+              { value: '3',   label: 'Core Disciplines' },
             ].map((stat) => (
-               <div key={stat.label}>
-                <div
-                  className="text-2xl sm:text-3xl font-bold text-white drop-shadow-md"
-                  style={{ fontFamily: 'Barlow, sans-serif' }}
-                >
+              <div key={stat.label}>
+                <div className="text-2xl sm:text-3xl font-bold text-white" style={{ fontFamily: 'Barlow, sans-serif' }}>
                   {stat.value}
                 </div>
-                <div className="text-blue-200/80 text-xs sm:text-sm mt-1 font-medium tracking-wide">
+                <div className="text-xs mt-1 font-medium tracking-wide" style={{ color: '#f4bb00' }}>
                   {stat.label}
                 </div>
               </div>
@@ -123,8 +170,64 @@ export default function Hero({ onQuoteClick }) {
         </div>
       </div>
 
-      {/* Bottom fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-slate-50 to-transparent z-10" />
+      {/* Slide controls — elegant circular arrows */}
+      <button
+        onClick={prev}
+        aria-label="Previous slide"
+        className="absolute left-5 sm:left-10 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full flex items-center justify-center text-white transition-all duration-300 cursor-pointer hover:scale-110"
+        style={{
+          background: 'rgba(255,255,255,0.12)',
+          backdropFilter: 'blur(8px)',
+          border: '1.5px solid rgba(255,255,255,0.35)',
+          boxShadow: '0 4px 20px rgba(0,0,0,0.25)',
+        }}
+        onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.22)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.7)'; }}
+        onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.12)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.35)'; }}
+      >
+        <span className="text-2xl font-light mb-1">&lt;</span>
+      </button>
+      <button
+        onClick={next}
+        aria-label="Next slide"
+        className="absolute right-5 sm:right-10 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full flex items-center justify-center text-white transition-all duration-300 cursor-pointer hover:scale-110"
+        style={{
+          background: 'rgba(255,255,255,0.12)',
+          backdropFilter: 'blur(8px)',
+          border: '1.5px solid rgba(255,255,255,0.35)',
+          boxShadow: '0 4px 20px rgba(0,0,0,0.25)',
+        }}
+        onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.22)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.7)'; }}
+        onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.12)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.35)'; }}
+      >
+        <span className="text-2xl font-light mb-1">&gt;</span>
+      </button>
+
+      {/* Dot indicators */}
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex gap-2.5">
+        {SLIDES.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => goTo(i)}
+            aria-label={`Go to slide ${i + 1}`}
+            className="transition-all duration-300 cursor-pointer"
+            style={{
+              width: i === current ? '28px' : '8px',
+              height: '8px',
+              borderRadius: '4px',
+              background: i === current ? '#f4bb00' : 'rgba(255,255,255,0.4)',
+              border: 'none',
+              padding: 0,
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Bottom wave */}
+      <div className="absolute bottom-0 left-0 right-0 z-10">
+        <svg viewBox="0 0 1440 60" preserveAspectRatio="none" className="w-full h-12 sm:h-16" fill="#ffffff">
+          <path d="M0,40 C360,80 1080,0 1440,40 L1440,60 L0,60 Z" />
+        </svg>
+      </div>
     </section>
   );
 }

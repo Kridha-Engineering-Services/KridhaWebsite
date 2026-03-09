@@ -8,7 +8,7 @@ const CAPABILITIES = [
     ),
     title: 'End-to-End Execution',
     description:
-      'We handle every phase of a project — from design and procurement through installation, testing, and handover — eliminating the coordination overhead for our clients.',
+      'We handle every project phase — from design and procurement through installation, testing, and handover — eliminating coordination overhead for our clients.',
   },
   {
     id: 'safety',
@@ -49,25 +49,25 @@ export default function Capabilities() {
   return (
     <section
       id="capabilities"
-      className="py-24 bg-slate-900 relative overflow-hidden"
-      style={{ fontFamily: 'Inter, system-ui, sans-serif' }}
+      className="py-24 relative overflow-hidden bg-slate-900"
     >
-      {/* Background grid */}
+      {/* Subtle red pattern */}
       <div
-        className="absolute inset-0 opacity-5"
+        className="absolute inset-0 opacity-[0.07]"
         style={{
-          backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
-                            linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+          backgroundImage: `linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px),
+                            linear-gradient(90deg, rgba(255,255,255,0.15) 1px, transparent 1px)`,
           backgroundSize: '60px 60px',
         }}
       />
+
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-14">
           <div className="inline-flex items-center gap-2 mb-4">
-            <div className="w-6 h-0.5 bg-blue-500" />
-            <span className="text-blue-400 text-xs font-semibold tracking-[0.2em] uppercase">
+            <div className="w-8 h-0.5" style={{ backgroundColor: '#f4bb00' }} />
+            <span className="text-xs font-bold tracking-[0.22em] uppercase" style={{ color: '#f4bb00' }}>
               Why KRIDHA
             </span>
           </div>
@@ -78,47 +78,64 @@ export default function Capabilities() {
             >
               Our Core Capabilities
             </h2>
-            <p className="text-slate-400 text-sm max-w-xs sm:text-right">
+            <p className="text-white/50 text-sm max-w-xs sm:text-right">
               Strengths that set our delivery apart.
             </p>
           </div>
         </div>
 
         {/* Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {CAPABILITIES.map((cap, idx) => (
-            <div
-              key={cap.id}
-              className="group"
-            >
+            <div key={cap.id} className="group">
               {/* Number */}
               <div
-                className="text-slate-700 text-5xl font-extrabold leading-none mb-4 select-none"
-                style={{ fontFamily: 'Barlow, sans-serif' }}
+                className="text-5xl font-extrabold leading-none mb-4 select-none transition-colors duration-300"
+                style={{ fontFamily: 'Barlow, sans-serif', color: 'rgba(244,187,0,0.18)' }}
               >
                 {String(idx + 1).padStart(2, '0')}
               </div>
 
               {/* Icon */}
-              <div className="w-10 h-10 border border-slate-700 group-hover:border-blue-500 group-hover:bg-blue-600 text-slate-400 group-hover:text-white flex items-center justify-center rounded-sm mb-5 transition-all duration-300">
-                {cap.icon}
+              <div
+                className="w-10 h-10 border flex items-center justify-center mb-5 transition-all duration-300 group-hover:scale-110"
+                style={{
+                  borderColor: 'rgba(255,255,255,0.12)',
+                  color: 'rgba(255,255,255,0.6)',
+                }}
+              >
+                <div className="group-hover:text-white group-hover:hidden">{cap.icon}</div>
+                <div className="hidden group-hover:block" style={{ color: '#f4bb00' }}>{cap.icon}</div>
               </div>
 
               {/* Title */}
-              <h3 className="text-white font-bold text-base mb-3" style={{ fontFamily: 'Barlow, sans-serif' }}>
+              <h3
+                className="text-white font-bold text-base mb-3 group-hover:text-white/90 transition-colors"
+                style={{ fontFamily: 'Barlow, sans-serif' }}
+              >
                 {cap.title}
               </h3>
 
               {/* Divider */}
-              <div className="w-8 h-0.5 bg-slate-700 group-hover:bg-blue-500 mb-4 transition-colors duration-300" />
+              <div
+                className="w-8 h-0.5 mb-4 transition-all duration-300 group-hover:w-14"
+                style={{ backgroundColor: '#96131e' }}
+              />
 
               {/* Description */}
-              <p className="text-slate-400 text-sm leading-relaxed">
+              <p className="text-white/50 text-sm leading-relaxed group-hover:text-white/70 transition-colors duration-300">
                 {cap.description}
               </p>
             </div>
           ))}
         </div>
+      </div>
+
+      {/* Bottom wave */}
+      <div className="absolute bottom-0 left-0 right-0">
+        <svg viewBox="0 0 1440 50" preserveAspectRatio="none" className="w-full h-10 sm:h-14" fill="#ffffff">
+          <path d="M0,30 C480,55 960,5 1440,30 L1440,50 L0,50 Z" />
+        </svg>
       </div>
     </section>
   );
