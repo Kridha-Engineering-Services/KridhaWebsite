@@ -41,7 +41,7 @@ export default function Navbar({ onQuoteClick }) {
           }
         `}
         style={{
-          backgroundColor: 'rgba(255,255,255,0.7)',
+          backgroundColor: 'rgba(255,255,255,0.9)',
           fontFamily: 'Inter, system-ui, sans-serif',
         }}
       >
