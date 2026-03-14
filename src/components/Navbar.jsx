@@ -34,14 +34,14 @@ export default function Navbar({ onQuoteClick }) {
           top-2 sm:top-4 left-1/2 -translate-x-1/2 w-[94%] sm:w-[95%] max-w-7xl
           ${
             menuOpen
-              ? 'py-1.5 shadow-xl'
+              ? 'py-1.5 shadow-2xl'
               : scrolled
-                ? 'py-1 backdrop-blur-xl shadow-lg border border-white/30'
-                : 'py-1.5 backdrop-blur-md border border-white/15 shadow-xl'
+                ? 'py-1 backdrop-blur-xl shadow-lg border border-white/10'
+                : 'py-1.5 backdrop-blur-md border border-white/5 shadow-xl'
           }
         `}
         style={{
-          backgroundColor: 'rgba(255,255,255,0.9)',
+          backgroundColor: 'rgba(10, 10, 10, 0.9)',
           fontFamily: 'Inter, system-ui, sans-serif',
         }}
       >
@@ -55,10 +55,10 @@ export default function Navbar({ onQuoteClick }) {
               className="flex flex-col items-start group focus:outline-none"
             >
               <img
-                src="./logo1.png"
+                src="./LOGO_02.png"
                 loading="lazy"
                 alt="Kridha Engineering Logo"
-                className={`w-auto object-contain transition-all duration-300 group-hover:scale-105 origin-left ${
+                className={`w-auto object-contain transition-all duration-300 group-hover:scale-105 origin-left brightness-110 ${
                   isLight ? 'h-12 sm:h-14 lg:h-16 drop-shadow-sm' : 'h-14 sm:h-16 lg:h-20 drop-shadow-md'
                 }`}
               />
@@ -71,12 +71,12 @@ export default function Navbar({ onQuoteClick }) {
                   key={link.href}
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link.href)}
-                  className="px-4 py-2 text-sm font-semibold transition-all duration-300 rounded-full"
+                  className="px-5 py-1.5 text-base font-semibold transition-all duration-300 rounded-full"
                   style={{
-                    color: '#374151',
+                    color: '#f3f4f6',
                   }}
-                  onMouseEnter={(e) => { e.currentTarget.style.color = '#96131e'; e.currentTarget.style.backgroundColor = '#fdf2f3'; }}
-                  onMouseLeave={(e) => { e.currentTarget.style.color = '#374151'; e.currentTarget.style.backgroundColor = 'transparent'; }}
+                  onMouseEnter={(e) => { e.currentTarget.style.color = '#ffffff'; e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.1)'; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.color = '#f3f4f6'; e.currentTarget.style.backgroundColor = 'transparent'; }}
                 >
                   {link.label}
                 </a>
@@ -120,7 +120,7 @@ export default function Navbar({ onQuoteClick }) {
       {/* Mobile Menu */}
       {menuOpen && (
         <div className="lg:hidden fixed inset-0 z-[45] flex flex-col items-center justify-center animate-fade-in pt-20"
-          style={{ backgroundColor: 'rgba(255,255,255,0.98)', backdropFilter: 'blur(20px)' }}
+          style={{ backgroundColor: 'rgba(10, 10, 10, 0.98)', backdropFilter: 'blur(20px)' }}
         >
           <nav className="flex flex-col items-center gap-6 w-full px-6 overflow-y-auto">
             {NAV_LINKS.map((link, index) => (
@@ -129,16 +129,16 @@ export default function Navbar({ onQuoteClick }) {
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
                 className="text-2xl font-bold transition-colors w-full text-center py-2"
-                style={{ fontFamily: 'Barlow, sans-serif', color: '#1e293b', animationDelay: `${index * 50}ms` }}
+                style={{ fontFamily: 'Barlow, sans-serif', color: '#f8fafc', animationDelay: `${index * 50}ms` }}
                 onMouseEnter={(e) => { e.currentTarget.style.color = '#96131e'; }}
-                onMouseLeave={(e) => { e.currentTarget.style.color = '#1e293b'; }}
+                onMouseLeave={(e) => { e.currentTarget.style.color = '#f8fafc'; }}
               >
                 {link.label}
               </a>
             ))}
             <button
               onClick={() => { setMenuOpen(false); onQuoteClick(); }}
-              className="mt-6 px-8 py-3.5 font-bold w-full max-w-xs shadow-lg active:scale-95 transition-transform cursor-pointer"
+              className="mt-6 px-8 py-3.5 font-bold w-full max-w-xs shadow-lg active:scale-95 transition-transform cursor-pointer rounded-full"
               style={{ backgroundColor: '#96131e', color: 'white', border: 'none' }}
             >
               Request a Quote
