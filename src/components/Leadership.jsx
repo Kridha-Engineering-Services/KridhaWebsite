@@ -9,7 +9,7 @@ const LEADERS = [
   {
     id: 'mb',
     initials: 'MB',
-    name: 'Dr. Madan Bansal',
+    name: 'Dr. Mohit Bansal',
     designation: 'Director',
     bio: 'Ph.D. in Engineering. An alumnus of premier institutions, contributing advanced technical knowledge, research-driven approach, and strategic vision to strengthen engineering excellence.',
   },
