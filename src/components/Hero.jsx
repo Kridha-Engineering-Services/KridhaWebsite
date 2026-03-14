@@ -88,7 +88,7 @@ export default function Hero({ onQuoteClick }) {
       />
 
       {/* Content */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-36 pt-40">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 pb-20 sm:pb-36 pt-28 sm:pt-40">
         <div className="max-w-2xl">
 
           {/* Tag pill */}
