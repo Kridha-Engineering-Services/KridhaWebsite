@@ -88,7 +88,7 @@ export default async function handler(req, res) {
       console.warn('Google Sheets environment variables missing. Skipping Sheets append.');
     }
 
-    if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
+    if (process.env.HEMAIL_USER && process.env.HEMAIL_PASS) {
       // --- HOSTINGER EMAIL CONFIGURATION ---
       const transporter = nodemailer.createTransport({
         host: 'smtp.hostinger.com',
@@ -115,8 +115,8 @@ export default async function handler(req, res) {
       */
 
       const mailOptions = {
-        from: process.env.EMAIL_USER,
-        to: process.env.EMAIL_USER, 
+        from: process.env.HEMAIL_USER,
+        to: process.env.HEMAIL_USER, 
         subject: 'New Quote Request – Company Website',
         html: `
           <h2 style="color: #1d4ed8;">New Quote Request</h2>
