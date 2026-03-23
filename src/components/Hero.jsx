@@ -2,21 +2,21 @@ import { useState, useEffect, useCallback } from 'react';
 
 const SLIDES = [
   {
-    image: './photos/Electrical.jpeg',
+    image: './photos/Electrical.webp',
     tag: 'Electrical Engineering',
     headline: 'Committed to Quality.',
     accent: 'Driven by Engineering.',
     body: 'End-to-end electrical solutions — HT/LT installations, distribution panels, structured cabling, and commissioning.',
   },
   {
-    image: './photos/hvac-installation.jpeg',
+    image: './photos/hvac-installation.webp',
     tag: 'HVAC & Mechanical',
     headline: 'Engineered Comfort.',
     accent: 'Built to Last.',
     body: 'Energy-efficient HVAC systems — VRV/VRF, ductable AC, centralized cooling, and Annual Maintenance Contracts.',
   },
   {
-    image: './photos/fireSafety.jpeg',
+    image: './photos/fireSafety.webp',
     tag: 'Fire Safety',
     headline: 'Safety You Trust.',
     accent: 'Built to Code.',

@@ -1,7 +1,7 @@
 const SERVICES = [
   {
     id: 'electrical',
-    image: './photos/electrical-distribution-cabinet.jpeg',
+    image: './photos/electrical-distribution-cabinet.webp',
     tag: 'Electrical',
     title: 'Electrical Sales & Installations',
     description:
@@ -15,7 +15,7 @@ const SERVICES = [
   },
   {
     id: 'hvac',
-    image: './photos/hvac-installation.jpeg',
+    image: './photos/hvac-installation.webp',
     tag: 'HVAC',
     title: 'Air Conditioning (HVAC) Sales & Installations',
     description:
@@ -29,7 +29,7 @@ const SERVICES = [
   },
   {
     id: 'fire',
-    image: './photos/fireSafety.jpeg',
+    image: './photos/fireSafety.webp',
     tag: 'Fire Safety',
     title: 'Fire Safety Sales & Installations',
     description:
