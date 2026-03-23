@@ -16,7 +16,7 @@ const SLIDES = [
     body: 'Energy-efficient HVAC systems — VRV/VRF, ductable AC, centralized cooling, and Annual Maintenance Contracts.',
   },
   {
-    image: './photos/fireSafety.png',
+    image: './photos/fireSafety.jpeg',
     tag: 'Fire Safety',
     headline: 'Safety You Trust.',
     accent: 'Built to Code.',

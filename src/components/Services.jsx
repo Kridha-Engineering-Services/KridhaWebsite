@@ -29,7 +29,7 @@ const SERVICES = [
   },
   {
     id: 'fire',
-    image: './photos/fireSafety.png',
+    image: './photos/fireSafety.jpeg',
     tag: 'Fire Safety',
     title: 'Fire Safety Sales & Installations',
     description:
