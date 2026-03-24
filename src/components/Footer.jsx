@@ -129,7 +129,7 @@ export default function Footer() {
 
               {/* Email */}
               <a
-                href="mailto:info@kridha.in"
+                href="mailto:info@kridha-engineering.in"
                 className="flex items-center gap-3 text-sm transition-colors duration-200"
                 style={{ color: 'rgba(255,255,255,0.65)' }}
                 onMouseEnter={(e) => e.currentTarget.style.color = '#f4bb00'}
@@ -138,7 +138,7 @@ export default function Footer() {
                 <svg className="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: '#f4bb00' }}>
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
-                info@kridha.in
+                info@kridha-engineering.in
               </a>
             </div>
           </div>
